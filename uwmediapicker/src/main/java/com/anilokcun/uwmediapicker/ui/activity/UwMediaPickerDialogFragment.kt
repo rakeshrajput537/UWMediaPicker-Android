@@ -209,6 +209,7 @@ internal class UwMediaPickerDialogFragment : DialogFragment() {
 						}.show()
 			} finally {
 				// Hide progress screen
+				if (!isAdded || context == null) return@launch
 				lytProgressBar?.visibility = View.GONE
 			}
 		}
@@ -286,11 +287,13 @@ internal class UwMediaPickerDialogFragment : DialogFragment() {
 					onBackPressed()
 				} finally {
 					// Hide progress screen
+					if (!isAdded || context == null) return@launch
 					lytProgressBar.visibility = View.GONE
 				}
 			}
 		} else {
 			// Hide progress screen
+			if (!isAdded && context == null) return
 			lytProgressBar.visibility = View.GONE
 			// Update ToolbarTitle
 			updateToolbarTitle()
@@ -440,7 +443,7 @@ internal class UwMediaPickerDialogFragment : DialogFragment() {
 			updateToolbarTitle()
 		} else {
 			cancelCallback?.invoke()
-			dismiss()
+			if (!this.isStateSaved) dismiss()
 		}
 	}
 	
