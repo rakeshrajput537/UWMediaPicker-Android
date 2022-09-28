@@ -112,7 +112,7 @@ class UwMediaPicker private constructor() {
 			} else {
 				fragmentWeakReference!!.get()!!.requireActivity().application
 			}
-			"${application.getExternalFilesDir(null)!!.path}/Pictures"
+			"${application.getExternalFilesDir(null)?.path}/Pictures"
 		} else {
 			compressedFileDestinationPath!!
 		}
